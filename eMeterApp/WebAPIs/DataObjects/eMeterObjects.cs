@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -14,19 +14,13 @@ namespace RestService.DataObjects
 
             [DataMember]
             public string Password { get; set; }
-        }
-
-        [DataContract]
-        public class ChangePasswordRequest : UserCredentials
-        {
-            [DataMember]
-            public string UName { get; set; }
 
             [DataMember]
             public string OldPassword { get; set; }
 
             [DataMember]
             public string NewPassword { get; set; }
+
         }
 
         [DataContract]
