@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -50,7 +50,7 @@ namespace RestService
             return response;
         }
 
-        public ResponseMessage ChangePassword(ChangePasswordRequest request)
+        public ResponseMessage ChangePassword(UserCredentials request)
         {
             ResponseMessage response = new ResponseMessage();
            
@@ -59,7 +59,7 @@ namespace RestService
                 connection.Open();
                 string query = "UPDATE Registration SET password = @newPassword WHERE userName = @userName AND password = @oldPassword";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@userName", request.UName);
+                command.Parameters.AddWithValue("@userName", request.UserName);
                 command.Parameters.AddWithValue("@oldPassword", request.OldPassword);
                 command.Parameters.AddWithValue("@newPassword", request.NewPassword);
 
