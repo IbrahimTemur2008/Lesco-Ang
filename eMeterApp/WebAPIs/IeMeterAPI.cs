@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
@@ -20,7 +20,7 @@ namespace RestService
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/ChangePassword", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        ResponseMessage ChangePassword(ChangePasswordRequest request);
+        ResponseMessage ChangePassword(UserCredentials request);
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/RegisterCustomer", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
