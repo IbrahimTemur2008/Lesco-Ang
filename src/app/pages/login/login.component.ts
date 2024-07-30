@@ -20,7 +20,6 @@ export class LoginComponent {
   }
 
   onLogin() {
-    debugger;
     this.http.post('https://freeapi.gerasim.in/api/User/Login', this.loginObj).subscribe((res:any)=>{
       if(res.result) {
         alert("Login Success");
