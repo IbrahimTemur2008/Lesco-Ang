@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using static RestService.DataObjects.eMeterObjects;
 
 namespace RestService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IeMeterAPI" in both code and config file together.
+    
     [ServiceContract]
     public interface IeMeterAPI
     {
@@ -39,11 +40,27 @@ namespace RestService
         List<User> GetAllUsers();
 
         [OperationContract]
+        [WebGet(UriTemplate = "/GetUser/{userId}", ResponseFormat = WebMessageFormat.Json)]
+        User GetUser(string userId);
+
+        [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/CreateCredentials", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         ResponseMessage CreateCredentials(Credentials credentials);
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "/RegisterMeterWithCustomer", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         ResponseMessage RegisterMeterWithCustomer(MeterDetails meterDetails);
-    }
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetLogin/{userId}", ResponseFormat = WebMessageFormat.Json)]
+        UserCredentials GetLogin(string userId);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetMeter/{userId}", ResponseFormat = WebMessageFormat.Json)]
+        MeterDetails GetMeter(string userId);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetDashboardData/{userID}", ResponseFormat = WebMessageFormat.Json)]
+        RecordReadingRequest GetDashboardData(string userID);
+  }
 }
